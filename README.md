@@ -30,26 +30,26 @@ Ensure you have the following installed:
 *   **PHP** (>= 8.2)
 *   **Composer**
 *   **Node.js & npm**
-*   **SQLite** (or your preferred database)
+*   **MySQL** (or your preferred database)
 
 ### Installation & Setup
 
 1.  **Clone the Repository:**
     ```bash
-    git clone https://github.com/91-shiraz/laravel-inertia-react-app.git
+    git clone https://github.com/yourusername/laravel-inertia-react-app.git
     cd laravel-inertia-react-app
     ```
 
 2.  **Run the Setup Script:**
-    This command automates package installation, environment file setup, database migrations, and builds assets:
+    This command automates package installation, database migrations, and builds assets:
     ```bash
-    composer run setup
+    composer install && npm install
     ```
 
 3.  **Start the Development Environment:**
-    Start the backend server, queue listener, logs, and Vite server concurrently:
+    Start the Backend Server and Frontend Server Concurrently:
     ```bash
-    composer run dev
+    php artisan serve && npm run dev
     ```
 
 4.  **Open the App:**
@@ -72,11 +72,11 @@ Key paths for the integration:
 
 | Command | Description |
 | :--- | :--- |
-| `composer run setup` | Installs dependencies, sets up `.env`, migrates the database, and builds frontend assets. |
-| `composer run dev` | Starts backend, queues, logs, and Vite dev servers concurrently. |
-| `composer run test` | Clears configuration cache and runs PHPUnit tests. |
-| `npm run dev` | Starts Vite dev server. |
-| `npm run build` | Builds frontend assets for production. |
+| `composer install` | Install Backend Dependencies. |
+| `php artisan serve` | Starts Backend Server. |
+| `npm install` | Install Frontend Dependencies. |
+| `npm run dev` | Starts Frontend Server. |
+| `npm run build` | Builds Frontend Assets for Production. |
 
 ---
 
