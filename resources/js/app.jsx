@@ -12,7 +12,7 @@ createInertiaApp({
         page.default.layout = page.default.layout || ((page) => <Layout children={page} />);
         return page;
     },
-    title: (title) => `${title} - Laravel React App`,
+    title: (title) => `${title} - BlogNova`,
     progress: {
         color: '#fff',
         delay: 100,
