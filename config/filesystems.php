@@ -60,6 +60,14 @@ return [
             'report' => false,
         ],
 
+        "website" => [
+            'driver' => "local",
+            'root' => public_path() . "/website" ,
+            "url" => env("APP_URL"). "/website",
+            "visibility" => "public",
+            "throw" => false
+        ]
+
     ],
 
     /*

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
 class PostController extends Controller
@@ -15,6 +16,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::latest()->paginate(6);
+
         return Inertia::render('Home', [
             'posts' => $posts,
         ]);
@@ -25,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Create');
     }
 
     /**
@@ -33,7 +35,20 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        try {
+            $data = $request->validated();
+            if ($request->hasFile('image')) {
+                $data['image'] = $this->storeImage('posts_images', $request->file('image'));
+            }
+
+            Post::create($data);
+
+            return redirect()->route('home');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+
+            return back()->with('error', 'Failed to Create Post!!');
+        }
     }
 
     /**

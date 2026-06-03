@@ -23,23 +23,21 @@ export default function Layout({ children }) {
                     </div>
 
                     <div className="flex items-center gap-1.5">
-                        <Link 
-                            href="/" 
-                            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
-                                url === '/' 
-                                    ? 'bg-slate-800 text-white shadow-inner' 
+                        <Link
+                            href="/"
+                            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${url === '/'
+                                    ? 'bg-slate-800 text-white shadow-inner'
                                     : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
-                            }`}
+                                }`}
                         >
                             Home
                         </Link>
-                        <Link 
-                            href="/create" 
-                            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
-                                url === '/create' 
-                                    ? 'bg-slate-800 text-white shadow-inner' 
+                        <Link
+                            href="/posts/create"
+                            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${url === '/posts/create'
+                                    ? 'bg-slate-800 text-white shadow-inner'
                                     : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
-                            }`}
+                                }`}
                         >
                             Create
                         </Link>
