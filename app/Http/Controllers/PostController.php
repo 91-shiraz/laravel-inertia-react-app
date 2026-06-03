@@ -77,11 +77,20 @@ class PostController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Post $post)
+    public function destroy(string $id)
     {
-        //
+        try {
+            $post = Post::where('_id', $id)->firstOrFail();
+            if ($post->image) {
+                $this->deleteImage($post->image);
+            }
+            $post->delete();
+
+            return redirect()->route('home');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+
+            return back()->with('error', 'Failed to Delete Post!!');
+        }
     }
 }
