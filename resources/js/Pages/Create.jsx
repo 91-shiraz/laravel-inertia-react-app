@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Head, useForm } from "@inertiajs/react";
+import { useRoute } from "../../../vendor/tightenco/ziggy";
 
 export default function Create() {
+    const route = useRoute();
     const { data, setData, post, processing, errors } = useForm({
         title: "",
         category: "",
@@ -30,7 +32,7 @@ export default function Create() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post("/posts", {
+        post(route('posts.store'), {
             forceFormData: true,
         });
     };

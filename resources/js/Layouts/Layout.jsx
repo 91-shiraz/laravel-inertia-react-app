@@ -1,7 +1,9 @@
 import { Link, usePage } from "@inertiajs/react";
+import { useRoute } from "../../../vendor/tightenco/ziggy";
 
 export default function Layout({ children }) {
     const { url } = usePage();
+    const route = useRoute();
 
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
@@ -24,19 +26,19 @@ export default function Layout({ children }) {
 
                     <div className="flex items-center gap-1.5">
                         <Link
-                            href="/"
-                            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${url === '/'
-                                    ? 'bg-slate-800 text-white shadow-inner'
-                                    : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+                            href={route('home')}
+                            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${url === route('home')
+                                ? 'bg-slate-800 text-white shadow-inner'
+                                : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
                                 }`}
                         >
                             Home
                         </Link>
                         <Link
-                            href="/posts/create"
-                            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${url === '/posts/create'
-                                    ? 'bg-slate-800 text-white shadow-inner'
-                                    : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+                            href={route('posts.create')}
+                            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${url === route('posts.create')
+                                ? 'bg-slate-800 text-white shadow-inner'
+                                : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
                                 }`}
                         >
                             Create

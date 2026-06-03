@@ -1,6 +1,8 @@
 import { Link, Head } from "@inertiajs/react";
+import { useRoute } from "../../../vendor/tightenco/ziggy";
 
 export default function Home({ posts }) {
+    const route = useRoute();
     const formatDate = (dateString) => {
         try {
             const date = new Date(dateString);
@@ -45,7 +47,7 @@ export default function Home({ posts }) {
                             <p className="mt-1 text-sm text-gray-500">Get Started by Creating a New Post!!</p>
                             <div className="mt-6">
                                 <Link
-                                    href="/create"
+                                    href={route('posts.create')}
                                     className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                 >
                                     Create Post
@@ -93,7 +95,7 @@ export default function Home({ posts }) {
                                         {/* Footer Info */}
                                         <div className="mt-4 pt-4 border-t border-gray-50 flex items-center justify-between text-xs text-gray-500">
                                             <span>{formatDate(post.created_at)}</span>
-                                            <Link href={`posts/${post._id}`}>
+                                            <Link href={route('posts.show', post._id)}>
                                                 <span className="flex items-center gap-1 text-indigo-600 font-semibold hover:text-indigo-700 transition-colors">
                                                     Read More
                                                     <svg className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -113,14 +115,13 @@ export default function Home({ posts }) {
                 <div className="flex justify-center items-center gap-2 mt-12 mb-8">
                     {posts.links.map((link, idx) => (
                         link.url ? (
-                            <Link 
+                            <Link
                                 href={link.url}
                                 key={idx}
-                                className={`px-4 py-2 rounded-xl text-xs font-semibold border transition-all duration-200 shadow-sm ${
-                                    link.active
+                                className={`px-4 py-2 rounded-xl text-xs font-semibold border transition-all duration-200 shadow-sm ${link.active
                                         ? 'bg-indigo-600 text-white border-indigo-600 hover:bg-indigo-700 shadow-md shadow-indigo-500/10'
                                         : 'bg-white text-slate-700 border-slate-200 hover:border-indigo-200 hover:text-indigo-600 hover:-translate-y-0.5'
-                                }`}
+                                    }`}
                                 dangerouslySetInnerHTML={{ __html: link.label }}
                             />
                         ) : (
@@ -129,7 +130,7 @@ export default function Home({ posts }) {
                                 className="px-4 py-2 rounded-xl text-xs font-medium border border-slate-100 bg-slate-50 text-slate-400 cursor-not-allowed opacity-60"
                                 dangerouslySetInnerHTML={{ __html: link.label }}
                             />
-                        ) 
+                        )
                     ))}
                 </div>
             </div>
