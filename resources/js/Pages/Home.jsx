@@ -62,11 +62,7 @@ export default function Home({ posts }) {
                                     {/* Image Wrapper */}
                                     <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
                                         {post.image ? (
-                                            <img
-                                                src={post.image.startsWith('http') ? post.image : `/website/${post.image}`}
-                                                alt={post.title}
-                                                className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500 ease-out"
-                                            />
+                                            <img src={post.image.startsWith('http') ? post.image : `/website/${post.image}`} alt={post.title} className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500 ease-out" />
                                         ) : (
                                             <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-indigo-50 to-slate-100 text-indigo-300">
                                                 <svg className="w-12 h-12 stroke-current" fill="none" viewBox="0 0 24 24">
@@ -97,12 +93,14 @@ export default function Home({ posts }) {
                                         {/* Footer Info */}
                                         <div className="mt-4 pt-4 border-t border-gray-50 flex items-center justify-between text-xs text-gray-500">
                                             <span>{formatDate(post.created_at)}</span>
-                                            <span className="flex items-center gap-1 text-indigo-600 font-semibold hover:text-indigo-700 transition-colors">
-                                                Read More
-                                                <svg className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </span>
+                                            <Link href={`posts/${post._id}`}>
+                                                <span className="flex items-center gap-1 text-indigo-600 font-semibold hover:text-indigo-700 transition-colors">
+                                                    Read More
+                                                    <svg className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                                                    </svg>
+                                                </span>
+                                            </Link>
                                         </div>
                                     </div>
                                 </article>

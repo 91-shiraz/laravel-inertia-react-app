@@ -54,9 +54,11 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(string $id)
     {
-        //
+        $post = Post::where('_id', $id)->firstOrFail();
+
+        return Inertia::render('Show', ['post' => $post]);
     }
 
     /**

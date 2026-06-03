@@ -1,6 +1,6 @@
-# Laravel + React + Inertia.js CRUD Boilerplate
+# ✦ BlogNova
 
-A modern, highly-optimized boilerplate for building Single Page Applications (SPAs) using **Laravel 12**, **React 19**, and **Inertia.js 3**, styled with **Tailwind CSS v4** and built with **Vite 7**.
+A modern, highly-optimized blog application built with **Laravel 12**, **React 19**, and **Inertia.js 3**, styled with **Tailwind CSS v4** and bundled using **Vite 7**.
 
 ---
 
@@ -15,10 +15,13 @@ A modern, highly-optimized boilerplate for building Single Page Applications (SP
 
 ## ✨ Features
 
-*   **Monorepo SPA Architecture:** No need for API routes or complex state managers. Render React components directly from your Laravel controllers.
-*   **Tailwind CSS v4 Integration:** Fully configured with the new, ultra-fast CSS-first compiler.
-*   **Concurrent Development:** A single command starts the Laravel server, queue worker, log stream, and Vite's dev server.
-*   **Automated Setup:** Bootstraps the application including dependency resolution, configuration, and database setup in one command.
+*   **Monorepo SPA Architecture:** Seamless rendering of React components directly from Laravel controllers via Inertia.js.
+*   **Persistent Layout Resolution:** Configured in `app.jsx` to automatically wrap pages in the shared layout without manual template boilerplate.
+*   **Modern Blog Grid & Details:** Card-based listing with hover elevation, category tag overlays, fallback covers, and article reading-time indicators.
+*   **Custom Storage System:** Configured a custom `website` disk (mapping to the public directory) for isolated blog asset handling.
+*   **Dynamic Upload Preview:** File upload input displays an interactive live preview of the cover image before publishing.
+*   **Automatic UUIDs:** Built-in model lifecycle triggers (`booted()`) to automatically generate UUIDs for the `_id` field.
+*   **Styled Pagination:** Theme-aligned pagination controls with route transitions and state indicators.
 
 ---
 
@@ -40,19 +43,32 @@ Ensure you have the following installed:
     cd laravel-inertia-react-app
     ```
 
-2.  **Run the Setup Script:**
-    This command automates package installation, database migrations, and builds assets:
+2.  **Install Dependencies:**
     ```bash
     composer install && npm install
     ```
 
-3.  **Start the Development Environment:**
-    Start the Backend Server and Frontend Server Concurrently:
+3.  **Setup Environment Variables:**
+    Duplicate the example configuration file:
     ```bash
-    php artisan serve && npm run dev
+    cp .env.example .env
+    ```
+    *Make sure to configure your DB connection settings in the newly created `.env` file.*
+
+4.  **Run Migrations & Seeders:**
+    ```bash
+    php artisan migrate --seed
     ```
 
-4.  **Open the App:**
+5.  **Start the Development Environment:**
+    Run the Artisan server and Vite server concurrently:
+    ```bash
+    php artisan serve
+    # And in a new terminal window:
+    npm run dev
+    ```
+
+6.  **Open the App:**
     Visit [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
 
 ---
@@ -62,21 +78,10 @@ Ensure you have the following installed:
 Key paths for the integration:
 
 *   [`routes/web.php`](file:///e:/Laravel/laravel-react-inertia-crud/routes/web.php) - Web routes returning Inertia pages.
-*   [`resources/js/Pages/`](file:///e:/Laravel/laravel-react-inertia-crud/resources/js/Pages) - React page components.
-*   [`resources/js/app.jsx`](file:///e:/Laravel/laravel-react-inertia-crud/resources/js/app.jsx) - Main entry point initializing Inertia.
-*   [`resources/views/app.blade.php`](file:///e:/Laravel/laravel-react-inertia-crud/resources/views/app.blade.php) - Root Blade layout wrapper.
-
----
-
-## 📜 Available Scripts
-
-| Command | Description |
-| :--- | :--- |
-| `composer install` | Install Backend Dependencies. |
-| `php artisan serve` | Starts Backend Server. |
-| `npm install` | Install Frontend Dependencies. |
-| `npm run dev` | Starts Frontend Server. |
-| `npm run build` | Builds Frontend Assets for Production. |
+*   [`app/Models/Post.php`](file:///e:/Laravel/laravel-react-inertia-crud/app/Models/Post.php) - Post database model generating UUIDs automatically.
+*   [`app/Http/Controllers/PostController.php`](file:///e:/Laravel/laravel-react-inertia-crud/app/Http/Controllers/PostController.php) - Logic mapping pagination, single articles, and uploads.
+*   [`resources/js/Layouts/layout.jsx`](file:///e:/Laravel/laravel-react-inertia-crud/resources/js/Layouts/layout.jsx) - Main glassmorphic template with active navigation states.
+*   [`resources/js/Pages/`](file:///e:/Laravel/laravel-react-inertia-crud/resources/js/Pages) - React views for listings, item details, and creation forms.
 
 ---
 
