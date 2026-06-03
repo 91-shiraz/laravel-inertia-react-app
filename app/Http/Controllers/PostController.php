@@ -43,11 +43,11 @@ class PostController extends Controller
 
             Post::create($data);
 
-            return redirect()->route('home');
+            return redirect()->route('home')->with('message', 'Blog Post Created Successfully!!');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
 
-            return back()->with('error', 'Failed to Create Post!!');
+            return back()->with('message', 'Failed to Create Blog Post!!');
         }
     }
 
@@ -86,11 +86,11 @@ class PostController extends Controller
             }
             $post->delete();
 
-            return redirect()->route('home');
+            return redirect()->route('home')->with('message', 'Blog Post Deleted Successfully!!');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
 
-            return back()->with('error', 'Failed to Delete Post!!');
+            return back()->with('message', 'Failed to Delete Blog Post!!');
         }
     }
 }

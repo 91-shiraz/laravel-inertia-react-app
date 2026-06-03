@@ -1,8 +1,11 @@
-import { Link, Head } from "@inertiajs/react";
+import { Link, Head, usePage } from "@inertiajs/react";
 import { useRoute } from "../../../vendor/tightenco/ziggy";
 
 export default function Home({ posts }) {
     const route = useRoute();
+
+    const { flash } = usePage().props
+
     const formatDate = (dateString) => {
         try {
             const date = new Date(dateString);
@@ -19,7 +22,6 @@ export default function Home({ posts }) {
     return (
         <>
             <Head title="Home" />
-
             {/* Hero Section */}
             <div className="bg-gradient-to-r from-slate-900 to-indigo-950 text-white py-16 px-4 sm:px-6 lg:px-8 text-center shadow-inner">
                 <div className="max-w-3xl mx-auto">
@@ -119,8 +121,8 @@ export default function Home({ posts }) {
                                 href={link.url}
                                 key={idx}
                                 className={`px-4 py-2 rounded-xl text-xs font-semibold border transition-all duration-200 shadow-sm ${link.active
-                                        ? 'bg-indigo-600 text-white border-indigo-600 hover:bg-indigo-700 shadow-md shadow-indigo-500/10'
-                                        : 'bg-white text-slate-700 border-slate-200 hover:border-indigo-200 hover:text-indigo-600 hover:-translate-y-0.5'
+                                    ? 'bg-indigo-600 text-white border-indigo-600 hover:bg-indigo-700 shadow-md shadow-indigo-500/10'
+                                    : 'bg-white text-slate-700 border-slate-200 hover:border-indigo-200 hover:text-indigo-600 hover:-translate-y-0.5'
                                     }`}
                                 dangerouslySetInnerHTML={{ __html: link.label }}
                             />
